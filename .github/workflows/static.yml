@@ -2,8 +2,8 @@ name: Push to Public Repo
 
 on:
   push:
-    branches: ["main"]  
-  workflow_dispatch:     
+    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   deploy-to-public:
@@ -15,14 +15,11 @@ jobs:
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.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}}  
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_76981 }}
         with:
-
-          source-directory: 'zad1_cv' 
-
-          destination-github-username: '76981ArtemHromliuk'
-
+          source-directory: 'zad1_cv'
+          destination-repository-owner: '76981ArtemHromliuk'
           destination-repository-name: 'cv-link76981'
-
           user-email: ahromli1@stu.vistula.edu.pl
+          user-name: github-actions
           target-branch: main
