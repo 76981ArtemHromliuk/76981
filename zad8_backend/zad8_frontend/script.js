@@ -163,7 +163,7 @@ function usunNotatke(index)
 
     console.log("BTNWYSLIJ");
 
-    fetch("http://localhost:8080/api/form", 
+    fetch("https://seven6981-repozytorium-zadaniowe.onrender.com/api/form",
     {
         method: "POST",
         headers: 
