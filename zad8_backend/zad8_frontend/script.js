@@ -16,6 +16,7 @@ const projektyList = document.getElementById("ulProjekty");
 //zad6
 const inpNotatka = document.getElementById("inpNotatka");
 
+console.log("76981");
 
 
 // zad 4
