@@ -4,7 +4,7 @@ WORKDIR /app/backend
 
 COPY zad8_backend/backend/ .
 
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:21-jdk
 
