@@ -32,7 +32,8 @@ public class FirebaseConfig
 
         } 
         catch (IOException e) 
-        {
+        {   
+            e.printStackTrace();
             System.out.println("Błąd");
         }
     }
