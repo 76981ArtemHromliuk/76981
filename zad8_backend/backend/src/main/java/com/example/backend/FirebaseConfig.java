@@ -1,6 +1,7 @@
 package com.example.backend;
 
-import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.springframework.context.annotation.Configuration;
@@ -19,29 +20,41 @@ public class FirebaseConfig
     {
         try 
         { // wczytanie klucza firebase admin sdk z pliku json 
-           String firebaseJson = System.getenv("project-715202589180821731-firebase-adminsdk");
-           if (firebaseJson == null) {
-                System.out.println("Firebase secret is NULL!");
+
+           File file = new File("/etc/secrets/project-715202589180821731-firebase-adminsdk");
+
+            System.out.println("Sprawdzenie");
+            System.out.println("Plik json exists: " + file.exists());
+            System.out.println("Plik json path: " + file.getAbsolutePath());
+
+            if (!file.exists()) 
+            {
+                System.out.println("błąd sprawdzenia secret jsonu");
                 return;
             }
-             ByteArrayInputStream serviceAccount =
-                    new ByteArrayInputStream(firebaseJson.getBytes());
 
+          FileInputStream serviceAccount = new FileInputStream(file);
 
-            FirebaseOptions options = FirebaseOptions.builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
+            FirebaseOptions options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .build();
 
             if (FirebaseApp.getApps().isEmpty()) 
             {
                 FirebaseApp.initializeApp(options);
+                System.out.println("Połączona baza danych Firebase");
+            } 
+            else 
+            {
+                System.out.println("Baza danych just była połączona");
             }
-
-            System.out.println("Połączona baza danych Firebase");
-
+            
         } 
         catch (IOException e) 
         {   
-            e.printStackTrace();
             System.out.println("Błąd");
+            e.printStackTrace();
         }
+          
     }
 }
